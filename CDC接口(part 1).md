@@ -132,7 +132,7 @@
 ### 升级合约
     contract_upgrade 合约地址 本地账户名 合约名 合约描述 资产标示 gas费
     示例
-    contract_upgrade C6c58f2e07af666a1100c9b1fa2f0f4ae45a99e55 cdc1 “NewContract” “my new contract” CDC 1
+    contract_upgrade C6c58f2e07af666a1100c9b1fa2f0f4ae45a99e55 cdc1 "NewContract" "my new contract" CDC 1
 
 ### 销毁合约
     contract_destroy 合约地址 本地账户名 资产标示 gas费
