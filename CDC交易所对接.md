@@ -152,3 +152,78 @@
     注：本地用户名不能与已注册上链的用户名一致，也不能与本地钱包中已经存在的用户名一致。
     因此交易所最好有个生成这个用户名的规则，才可以比较方便得将用户的地址批量创建出来    
     
+### 列出钱包内的所有账户（地址）
+
+    请求方法：wallet_list_accounts
+    请求参数：无
+
+    Request:
+    {"method":"wallet_list_accounts","id":20180517144818773,"jsonrpc":"2.0","params":[]}
+
+    
+    Response：
+	{"id":"20180517144818773", "result": [{
+			"index": 17,
+			"id": 0,
+			"name": "cdc00001",
+			"public_data": null,
+			"owner_key": "0x7HbYqgoviPWkny7xZ6fnFdweEwwKZUoEfnk8zFgRDsmdEFWMnC",
+			"active_key_history": [
+				["2018-08-20T05:59:53", "0x5rXGWYiAuLHNTXVwKSqK5YCPVqpXrZGPNsWSLJ3UWM6nuHo6Lz"]
+			],
+			"registration_date": "1970-01-01T00:00:00",
+			"last_update": "2018-08-20T05:59:53",
+			"is_my_account": true,
+			"approved": 0,
+			"is_favorite": false,
+			"block_production_enabled": false,
+			"last_used_gen_sequence": 0,
+			"private_data": null
+		}, {
+			"index": 20,
+			"id": 0,
+			"name": "cdc00002",
+			"public_data": null,
+			"owner_key": "0x55W1HQ9UpavLrjDCD9pkXD1vUB1uZDqGfGPsXD9MNiBsU97eWX",
+			"active_key_history": [
+				["2018-08-20T06:00:12", "0x5Yc6ngS3P8NDnxVbjVoaQ9AvcKTanirwGFKENM5ZZmrSkGnoAS"]
+			],
+			"registration_date": "1970-01-01T00:00:00",
+			"last_update": "2018-08-20T06:00:12",
+			"is_my_account": true,
+			"approved": 0,
+			"is_favorite": false,
+			"block_production_enabled": false,
+			"last_used_gen_sequence": 0,
+			"private_data": null
+		}, {
+			"index": 11,
+			"id": 0,
+			"name": "cdc00003",
+			"public_data": null,
+			"owner_key": "0x7QJLBqomLYzPnJPXiUBRBwY5bZ3EfnBVYrRQgZ4xo2Kp7D7fCK",
+			"active_key_history": [
+				["2018-08-17T09:55:17", "0x7QJLBqomLYzPnJPXiUBRBwY5bZ3EfnBVYrRQgZ4xo2Kp7D7fCK"]
+			],
+			"registration_date": "1970-01-01T00:00:00",
+			"last_update": "2018-08-17T09:55:17",
+			"is_my_account": true,
+			"approved": 0,
+			"is_favorite": false,
+			"block_production_enabled": false,
+			"last_used_gen_sequence": 0,
+			"private_data": null
+		}]
+	}
+ 
+ ### 获取钱包内某账户名的地址
+
+    请求方法：wallet_get_account_public_address
+    请求参数：账户名
+
+    Request:
+    {"method":"wallet_get_account_public_address","id":20180517150216550,"jsonrpc":"2.0","params":["cdc00001"]}
+
+    
+    Response：
+    {"id":"20180517150216550","result":"0xe51eb7fdaf16b9bbbb48d5f1dc56aac53e4f9fad"}
