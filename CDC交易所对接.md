@@ -88,4 +88,67 @@
     {"method":"blockchain_get_block_count","id":20180523112440522,"jsonrpc":"2.0","params":[]}
     
     Response：
-	{"id":"20180523112440522","result":23324}    
+    {"id":"20180523112440522","result":23324} 
+
+
+<br/>
+<br/>
+
+
+# 交易所涉及接口（用户地址创建相关接口）
+
+### 创建钱包
+
+    请求方法：wallet_create
+    请求参数：创建钱包名称（小写英文字符开头、只能是小写英文字符、数字或中划线）、创建密码（长度不低于8位）
+
+    Request:
+    {"method":"wallet_create","id":20180517140651383,"jsonrpc":"2.0","params":["cdc","cdc123456"]}
+
+    
+    Response：
+    {"id":"20180517140651383","result":null}
+	
+    注：成功创建钱包后，钱包默认是打开的，并且解锁时长是60分钟，超过60分钟时钱包重新锁定。
+    可以通过wallet_unlock方法自定义解锁时长。
+
+### 打开钱包
+
+    请求方法：wallet_open
+    请求参数：钱包名
+
+    Request:
+    {"method":"wallet_open","id":20180517142746758,"jsonrpc":"2.0","params":["cdc"]}
+
+    
+    Response：
+    {"id":"20180517142746758","result":null}
+
+### 解锁钱包
+
+    请求方法：wallet_unlock
+    请求参数：解锁时长（秒），解锁密码
+
+    Request:
+    {"method":"wallet_unlock","id":20180517144003773,"jsonrpc":"2.0","params":["99999999","cdc123456"]}
+    
+    Response：
+    {"id":"20180517144003773","result":null}
+    
+    注：解锁钱包的前提是需要先打开钱包
+    
+### 在钱包中创建账户（地址）
+
+    请求方法：wallet_account_create
+    请求参数：本地用户名（小写英文字符开头、只能是小写英文字符、数字或中划线）
+
+    Request:
+    {"method":"wallet_account_create","id":20180517144818773,"jsonrpc":"2.0","params":["cdcuser000001"]}
+
+    
+    Response：
+    {"id":"20180517144818773","result":"0xe51eb7fdaf16b9bbbb48d5f1dc56aac53e4f9fad"}
+    
+    注：本地用户名不能与已注册上链的用户名一致，也不能与本地钱包中已经存在的用户名一致。
+    因此交易所最好有个生成这个用户名的规则，才可以比较方便得将用户的地址批量创建出来    
+    
