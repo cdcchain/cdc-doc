@@ -136,7 +136,29 @@
     {"id":"20180517144003773","result":null}
     
     注：解锁钱包的前提是需要先打开钱包
+
+### 钱包自动备份（打开/关闭）
+
+    请求方法：wallet_set_automatic_backups
+    请求参数：true/false
+
+    Request:
+    {"method":"wallet_set_automatic_backups","id":20180517150216550,"jsonrpc":"2.0","params":[true]}
+
     
+    Response：
+    {
+        "id": "20180517150216550",
+        "result":true
+    }   
+    
+    注：自动备份默认设置是打开状态。同时如果自动备份打开的话，当钱包中每新增一个账户，则会钱包目录下的.backups目录下
+    自动创建一个钱包备份文件。
+    
+    注2：交易所在批量创建地址的时候，建议将钱包的自动备份功能关闭，否则每新增一个账户，就会备份一个钱包文件，会导致
+    大量的磁盘占用，同时也非常影响地址的创建效率。
+
+
 ### 在钱包中创建账户（地址）
 
     请求方法：wallet_account_create
@@ -238,6 +260,7 @@
 
     交易所通过扫描区块中的交易，并且判断相关交易是否是用户充值交易的方式来判断用户充值交易的。
     这种方式比较安全可靠，不需要在钱包中保留任何私钥，是当前最安全可靠的判定用户充值的方式，强烈推荐使用
+    用户充值确认数推荐值：30
 
 ### 获取区块中的交易信息
 
@@ -454,4 +477,64 @@
             "extra_addresses": ["0xf5d9041c25dc5e112b2f03abb6a2a70e5d6396e5"]
         }        
     }    
+ 
+ 
+ ### 账户余额查询
+
+    请求方法：wallet_account_balance
+    请求参数：账户名
+
+    Request:
+    {"method":"wallet_account_balance","id":20180517150216550,"jsonrpc":"2.0","params":["cdc00001"]}
+
     
+    Response：
+    {
+        "id": "20180517150216550",
+        "result":[["cdc00001",[[0,50000000]]]]
+    }
+    
+    
+ ### 判断交易是否已上链
+     可以使用上面那个 blockchain_get_pretty_transaction 那个接口，如果能查询到相关交易id的信息，说明已经成功上链，否则说明还未成功上链。
+     
+
+<br/>
+<br/>
+    
+    
+    
+# 交易所涉及接口（钱包维护）
+
+### 钱包备份
+    请求方法：wallet_backup_create
+    请求参数：钱包备份的目标文件
+
+    Request:
+    {"method":"wallet_backup_create","id":20180517150216550,"jsonrpc":"2.0","params":["/home/ubuntu/backup/mywallet_backup.json"]}
+
+    
+    Response：
+    {
+        "id": "20180517150216550",
+        "result":null
+    }
+
+### 钱包恢复
+
+    请求方法：wallet_backup_restore
+    请求参数：钱包备份的目标文件、恢复钱包名、原钱包密码
+
+    Request:
+    {"method":"wallet_backup_restore","id":20180517150216550,"jsonrpc":"2.0","params":["/home/ubuntu/backup/mywallet_backup.json", "cdc", "cdc123456"]}
+
+    
+    Response：
+    {
+        "id": "20180517150216550",
+        "result":null
+    } 
+
+
+
+     
